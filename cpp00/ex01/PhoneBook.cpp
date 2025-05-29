@@ -18,7 +18,7 @@ PhoneBook::~PhoneBook() {
 }
 
 void PhoneBook::addContact(Contact &contact) {
-	contacts[nextIndex] = contact;
+	contacts[nextIndex] = contact;//shift contacts to the next index
     nextIndex = (nextIndex + 1) % MAX;
 
     }
@@ -36,7 +36,7 @@ void PhoneBook::printContactList(){
     std::cout << "---------------------------------------------" << std::endl;
     for (int i = 0; i < MAX; i++) {
         if (contacts[i].getFirstName() != "") {
-            std::cout << "|" << std::setw(10) << i
+            std::cout << "|" << std::setw(10) << i //set width for index as 10 characters
                       << "|" << contactManipulation(contacts[i].getFirstName())
                       << "|" << contactManipulation(contacts[i].getLastName())
                       << "|" << contactManipulation(contacts[i].getNickname())
