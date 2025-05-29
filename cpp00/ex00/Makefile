@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone\
 
-SRCS = ex00.cpp\
+SRCS = megaphone.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 

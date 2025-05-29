@@ -17,7 +17,6 @@ int main(void)
 	std::cout << "Please enter a command (ADD, SEARCH, EXIT): ";
 	if (!getline(std::cin, command)) 
 		break;
-
 	if(command == "ADD")
 	{
 			Contact contact;
