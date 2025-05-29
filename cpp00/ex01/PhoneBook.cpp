@@ -12,9 +12,8 @@ PhoneBook::PhoneBook(){
         contacts[i] = Contact();
 }
 PhoneBook::~PhoneBook() {
-	nextIndex = 0;
-    for (int i = 0; i < MAX; i++)
-        contacts[i] = Contact();
+
+
 }
 
 void PhoneBook::addContact(Contact &contact) {
