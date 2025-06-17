@@ -8,8 +8,10 @@ HumanA::HumanA(const std::string &name, Weapon &wpn)
 
 }
 
-HumanA::~HumanA() 
+HumanA::~HumanA()
 {
+
+
 }
 
 void HumanA::attack()

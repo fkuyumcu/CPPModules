@@ -1,10 +1,14 @@
 #include "Weapon.hpp"
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string &name)
-{
+HumanB::HumanB(const std::string name):name(name){
+    
+}
 
-};
+HumanB::~HumanB(){
+    
+}
+
 
 Weapon *HumanB::getWeapon(void)
 {
