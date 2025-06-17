@@ -13,26 +13,13 @@ class  Weapon
     const std::string &getType() const;
     void        setType(std::string &newType);
     Weapon();
-    
+    ~Weapon();
 };
 
-class HumanA
-{
-    private:
-
-    public:
 
 
-};
-
-class HumanB
-{
-    private:
-
-    public:
 
 
-}
 
 
 
