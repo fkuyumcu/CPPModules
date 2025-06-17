@@ -1,0 +1,39 @@
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
+
+#include <iostream>
+#include <string>
+
+class  Weapon
+{
+    private:
+    std::string type;
+
+    public:
+    const std::string &getType() const;
+    void        setType(std::string &newType);
+    Weapon();
+    
+};
+
+class HumanA
+{
+    private:
+
+    public:
+
+
+};
+
+class HumanB
+{
+    private:
+
+    public:
+
+
+}
+
+
+
+#endif
