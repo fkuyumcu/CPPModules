@@ -2,12 +2,9 @@ CPP = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = brainz\
+NAME = string\
 
 SRCS = main.cpp\
-		newZombie.cpp\
-		randomChump.cpp\
-		Zombie.cpp\
 		
 OBJS = $(SRCS:.cpp=.o)
 
