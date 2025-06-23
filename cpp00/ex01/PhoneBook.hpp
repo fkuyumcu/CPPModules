@@ -15,7 +15,7 @@ class PhoneBook {
         void printContactList();
         
     public:
-        void addContact(Contact &contact);
+        void addContact(Contact contact);
         void searchContact();
         void exitPhoneBook();
         PhoneBook();

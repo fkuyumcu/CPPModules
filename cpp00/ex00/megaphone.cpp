@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bits/stdc++.h>
 
 
 int main(int ac, char **av)
@@ -13,8 +12,10 @@ int main(int ac, char **av)
     for (int i = 1 ; i < (ac); i++)
     {
         std::string s = av[i];
-        std::transform(s.begin(), s.end(), s.begin(), 
-                    ::toupper);
+        for(size_t j = 0; j < s.length(); j++)
+        {
+            s[j] = std::toupper(s[j]);
+        }
         std::cout << s;
         if(i != ac - 1)
             std::cout << " ";
