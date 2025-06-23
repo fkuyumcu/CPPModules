@@ -1,4 +1,3 @@
-
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <iostream>
@@ -49,8 +48,8 @@ void PhoneBook::searchContact() {
 	std::cout << "Enter the contact index: ";
 	std::cin >> index;
 	std::cin.ignore();
-	if (index < 0 || index >= MAX) {
-		std::cout << "Invalid index." << std::endl;
+	if (index < 0 || index >= MAX || contacts[index].getFirstName() == "") {
+        std::cout << "Invalid index." << std::endl;
 		return ;
 	}
 	std::cout << "Contact details:" << std::endl;
