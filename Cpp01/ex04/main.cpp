@@ -1,7 +1,5 @@
 #include "Sed.hpp"
-#include <iostream>
-#include <string>
-#include "fstream"
+
 
 int main(int ac, char **av)
 {
@@ -13,24 +11,25 @@ int main(int ac, char **av)
     }
     std::ifstream infile(av[1]);
     
-    infile.open(av[1]);
-    
-    if(!infile)
+    if(!infile.is_open())
     {
         std::cerr << "Error Opening File";
         exit(1);
     }
-    std::ofstream outfile(std::string(av[1]) + ".replace");
-    if(!outfile)
-    {
-        std::cerr << "Error Creating File";
-        infile.close();
-        exit(1);
-    }
 
     std::stringstream buffer;
-    buffer << infil
+    buffer << infile.rdbuf();
+    std::string content = buffer.str();
 
     infile.close();
+    
+    std::ofstream outfile(std::string(av[1]) + ".replace");
+    if(!outfile.is_open())
+    {
+        std::cerr << "Error Creating File";
+        exit(1);
+    }
+    outfile << ft_replace(content, av[2], av[3]);
+    outfile.close();
 
 }

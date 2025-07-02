@@ -2,7 +2,7 @@ CPP = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = violance\
+NAME = sed\
 
 SRCS = main.cpp\
 		Sed.cpp\
