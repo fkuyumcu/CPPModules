@@ -5,15 +5,11 @@ int main()
 {
     Harl harl;
 
-
-    
     harl.complain("DEBUG");
     harl.complain("INFO");
     harl.complain("WARNING");
     harl.complain("ERROR");
-    harl.complain("INVALID"); // Hiçbir şey yazmaz (veya custom bir "unknown level" mesajı verebilir)
-
-    
+    harl.complain("furkan");
 
 }
 

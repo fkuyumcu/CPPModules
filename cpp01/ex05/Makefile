@@ -2,7 +2,7 @@ CPP = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-NAME = sed\
+NAME = harl\
 
 SRCS = main.cpp\
 		Harl.cpp\
