@@ -3,12 +3,12 @@
 Zombie::Zombie()
 {
        
-};
+}
 
 Zombie::~Zombie()
 {
     std::cout << this->name << " died." << std::endl;
-};
+}
 
 void Zombie::announce(void)
 {

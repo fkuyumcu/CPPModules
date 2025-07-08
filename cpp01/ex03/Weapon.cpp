@@ -5,7 +5,8 @@ Weapon::Weapon(std::string type) : type(type)
     setType(type);
 }
 
-Weapon::~Weapon(){
+Weapon::~Weapon()
+{
 
 }
 

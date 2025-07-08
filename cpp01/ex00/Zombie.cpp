@@ -1,9 +1,9 @@
 #include "Zombie.hpp"
 
 
-Zombie::Zombie(std::string name) : name(name)
+Zombie::Zombie(std::string name)
 {
-
+    this->name = name;
 }
 
 Zombie::~Zombie()
