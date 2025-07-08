@@ -3,12 +3,10 @@
 int main(void)
 {
 
-    Zombie *HeapZombie = new Zombie("HeapZombie");
+    Zombie *HeapZombie = newZombie("heapZombie");
     HeapZombie->announce();
 
     delete HeapZombie;
 
-    Zombie StackZombie("StackZombie");
-    StackZombie.randomChump("StackZombie");
-    StackZombie.announce();
+    randomChump("StackZombie"); 
 }
