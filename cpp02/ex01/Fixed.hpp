@@ -1,6 +1,7 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
+#include <cmath>
 #include <string>
 #include <iostream>
 
@@ -15,9 +16,12 @@ class Fixed
         ~Fixed();
         float toFloat( void ) const;
         int toInt( void ) const;
-        
+        int		getRawBits( void ) const;
+    	void	setRawBits( int const raw );
+
     private:
     	static const int	NumOfFractional = 8;
+        int rawBits;
 
 };
 
