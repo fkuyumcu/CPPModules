@@ -5,7 +5,7 @@
 
 std::string ft_replace(std::string content, std::string s1, std::string s2)
 {
-    std::string res;
+    std::string result;
 
     size_t pos = 0;
     size_t found_char = 0;
@@ -16,12 +16,12 @@ std::string ft_replace(std::string content, std::string s1, std::string s2)
         return content;
     }
 
-    while((found_char = content.find(s1,pos)) != std::string::npos)
+    while((found_char = content.find(s1,pos)) != std::string::npos)//search loop
     {
-        res += content.substr(pos, found_char - pos);
-        res += s2;
-        pos = found_char + s1.length();
+        result += content.substr(pos, found_char - pos);//add part before s1
+        result += s2;//add s2 to result isntead of s1
+        pos = found_char + s1.length(); //position is changed from start to end of s2
     }
-    res += content.substr(pos);
-    return (res);
+    result += content.substr(pos);//add part after the last find element
+    return (result);
 }
