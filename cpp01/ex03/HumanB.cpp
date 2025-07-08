@@ -2,7 +2,7 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB(const std::string name):name(name){
-    
+    this->wpn = NULL;
 }
 
 HumanB::~HumanB(){
