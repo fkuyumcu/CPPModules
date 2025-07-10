@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:33:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/07/10 14:33:57 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/07/10 15:11:31 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ Fixed::Fixed()
 }
 
 
-Fixed::Fixed(const int fixedPoint)
+Fixed::Fixed(const int integer)
 {
+    //convert integer into fixedpoint
     std::cout << "Int constructor called" << std::endl;
-    //integer sayıları fixedpoint olarak saklarken yalnızca sağa ya da sola kaydırarak çevirebiliyoruz
-    setRawBits(fixedPoint << NumOfFractional);
+    setRawBits(integer << NumOfFractional);
 }
 
     
@@ -33,7 +33,6 @@ Fixed::Fixed(const float floatingPoint)
 {
     std::cout << "Float constructor called" << std::endl;
     // convert float into fixedpoint
-    //kesirden sonraki kısım 8 bit olduğundan dolayı float sayıyı 256 ile çarpıyorum
     //1 << 8 = 256
     setRawBits(roundf(floatingPoint * (1 << NumOfFractional)));
 }
@@ -53,9 +52,7 @@ Fixed::~Fixed()
 
 float Fixed::toFloat(void) const
 {
-    //cpp02'de static cast gerekli mi?
     return static_cast<float>(this->rawBits) / (1 << NumOfFractional);
-    //1 << 8 = 256 yapar, floatig point sayıyı fixed hale getirirken round ile yuvarlamıştık. şimdi de static cast ile float hale getiriyorum 
 }
 
 int Fixed::toInt(void) const
