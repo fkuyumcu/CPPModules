@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/10 14:33:39 by fkuyumcu          #+#    #+#             */
+/*   Updated: 2025/07/10 14:57:29 by fkuyumcu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 
@@ -10,7 +22,7 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed &f)
 {
     std::cout << "Copy constructor called" << std::endl;
-    this->FixedValue = f.FixedValue;
+    this->FixedValue = f.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed &f)
@@ -18,7 +30,7 @@ Fixed& Fixed::operator=(const Fixed &f)
     std::cout << "Copy assignment operator called" << std::endl;
     if(this != &f)
     {
-        this->FixedValue = f.FixedValue;
+        this->FixedValue = f.getRawBits();
     }
     return *this;
 }
