@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
@@ -54,8 +55,37 @@ int main()
     st4.attack("Target");
     st4.guardGate();
     
-    std::cout << "\n=== Destruction Order Test ===" << std::endl;
-    // Objects will be destroyed in reverse order of construction
+    std::cout << "\n=====================" << std::endl;
+    std::cout << "=== FragTrap Tests ===" << std::endl;
+    std::cout << "=====================" << std::endl;
+    
+    std::cout << "\n=== FragTrap Construction Test ===" << std::endl;
+    FragTrap ft("Frag");
+    
+    std::cout << "\n=== FragTrap Attack Test ===" << std::endl;
+    ft.attack("Enemy");
+    ft.attack("Monster");
+    
+    std::cout << "\n=== FragTrap High Five Test ===" << std::endl;
+    ft.highFivesGuys();
+    
+    std::cout << "\n=== FragTrap Repair Test ===" << std::endl;
+    ft.beRepaired(15);
+    
+    std::cout << "\n=== FragTrap Damage Test ===" << std::endl;
+    ft.takeDamage(40);
+    ft.takeDamage(70);
+    
+    std::cout << "\n=== FragTrap Copy Test ===" << std::endl;
+    FragTrap ft2(ft);
+    FragTrap ft3("Original");
+    ft3 = ft2;
+    ft3.highFivesGuys();
+    
+    std::cout << "\n=== FragTrap Default Constructor Test ===" << std::endl;
+    FragTrap ft4;
+    ft4.attack("Target");
+    ft4.highFivesGuys();
     
     return 0;
 }

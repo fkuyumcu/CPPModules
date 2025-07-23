@@ -23,9 +23,6 @@ class ClapTrap
         size_t HitPoints;
         size_t EnergyPoints;
         size_t AttackDamage;
-
-
-
 };
 
 

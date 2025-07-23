@@ -22,8 +22,6 @@ ClapTrap::ClapTrap(std::string Name)
 ClapTrap::~ClapTrap()
 {
     std::cout << "Destructor Called" << std::endl;
-
-
 }
 
 void ClapTrap::attack(const std::string& target)

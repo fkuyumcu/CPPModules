@@ -2,11 +2,12 @@ CPP = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-NAME = scavtrap\
+NAME = fragtrap\
 
 SRCS = main.cpp\
 		ClapTrap.cpp\
 		ScavTrap.cpp\
+		FragTrap.cpp\
 		
 OBJS = $(SRCS:.cpp=.o)
 
