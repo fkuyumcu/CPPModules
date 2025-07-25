@@ -14,6 +14,7 @@ ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name)
     this->HitPoints = 100;
     this->EnergyPoints = 50;
     this->AttackDamage = 20;
+    this->Name = Name;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &f) : ClapTrap(f)
