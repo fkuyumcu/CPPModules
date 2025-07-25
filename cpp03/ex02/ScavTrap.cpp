@@ -14,12 +14,17 @@ ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name)
     this->HitPoints = 100;
     this->EnergyPoints = 50;
     this->AttackDamage = 20;
+    this->Name = Name;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &f) : ClapTrap(f)
 {
     std::cout << "ScavTrap Copy Constructor Called" << std::endl;
     *this = f;
+}
+ScavTrap::~ScavTrap()
+{
+    std::cout << "ScavTrap Destructor Called" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &f)
@@ -32,23 +37,23 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &f)
     return *this;
 }
 
-ScavTrap::~ScavTrap()
-{
-    std::cout << "ScavTrap Destructor Called" << std::endl;
-}
 
 void ScavTrap::attack(const std::string& target)
 {
     if(this->EnergyPoints > 0 && this->HitPoints > 0)
     {
-        std::cout << "ScavTrap " << this->Name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage" << std::endl;
+        std::cout << "ScavTrap " << this->Name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage!" << std::endl;
         this->EnergyPoints--;
     }
     else
-        std::cout << "ScavTrap " << this->Name << "can't do anything." << std::endl;
+        std::cout << "ScavTrap " << this->Name << " can't do anything!" << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap " << this->Name << " is now in gatekeeper mode." << std::endl;
+    std::cout << "ScavTrap " << this->Name << " is now in Gate keeper mode." << std::endl;
 }
+
+
+
+

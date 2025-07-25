@@ -67,7 +67,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "ClapTrap Copy constructor called" << std::endl;
     *this = other;
 }
 
