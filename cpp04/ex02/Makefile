@@ -2,7 +2,7 @@ CPP = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = ex01
+NAME = ex02
 
 SRCS = main.cpp\
 		Cat.cpp\
