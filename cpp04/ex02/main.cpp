@@ -81,6 +81,16 @@ int main(void)
     std::cout << "Wrong sounds:" << std::endl;
     wrongCat->makeSound();
     wrongAnm->makeSound();
+
+    std::cout << BOLD_GREEN << "Deep Copy Tests" << RESET << std::endl;
+    Dog dog3;
+    Dog dog4;
+    
+    dog3 = dog4;
+    
+    std::cout << "dog1 brain address: " << &dog3 << std::endl;
+    std::cout << "dog2 brain address: " << &dog4 << std::endl;
+    
     
     delete wrongAnm;
     delete wrongCat;
