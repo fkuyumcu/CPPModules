@@ -17,77 +17,76 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+
 int main(void)
 {
-    std::cout << "=== Basic Tests ===" << std::endl;
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
+    std::cout << BOLD_GREEN << "Basic Tests" << RESET << std::endl;
+    const Animal* Anm = new Animal();
     const Animal* i = new Cat();
+    const Animal* j = new Dog();
     
-    std::cout << "\nTesting getType()" << std::endl;
+    std::cout << BOLD_GREEN << "Testing getType()" << RESET << std::endl;
     std::cout << "j type: " << j->getType() << std::endl;
     std::cout << "i type: " << i->getType() << std::endl;
-    std::cout << "meta type: " << meta->getType() << std::endl;
+    std::cout << "Anm type: " << Anm->getType() << std::endl;
     
-    std::cout << "\nTesting makeSound()" << std::endl;
+    std::cout << BOLD_GREEN << "Testing makeSound()" <<RESET<< std::endl;
     i->makeSound();
     j->makeSound();
-    meta->makeSound();
+    Anm->makeSound();
+        
+    std::cout << BOLD_GREEN << "Deep Copy Tests" <<RESET<< std::endl;
     
-    std::cout << "\nDeleting basic objects" << std::endl;
-    delete meta;
-    delete j;
-    delete i;
-    
-    std::cout << "\n=== Deep Copy Tests ===" << std::endl;
-    std::cout << "Testing copy constructor:" << std::endl;
+    std::cout << BOLD_GREEN << "Testing copy constructor:" << RESET << std::endl;
     Cat cat1;
     Cat cat2(cat1);
     
-    std::cout << "\nTesting assignment operator:" << std::endl;
+    std::cout << BOLD_GREEN << "Testing assignment operator:" <<RESET<< std::endl;
     Dog dog1;
     Dog dog2;
     dog2 = dog1;
     
-    std::cout << "\n=== Array of Animals Tests ===" << std::endl;
-    const int ARRAY_SIZE = 10;
-    Animal* animals[ARRAY_SIZE];
+    std::cout << BOLD_GREEN << "Array of Animals Tests" <<RESET<< std::endl;
+    const int SIZE = 10;
+    Animal* animals[SIZE];
     
-    // Fill half with Dogs, half with Cats
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    for (int i = 0; i < SIZE; i++)
     {
-        if (i < ARRAY_SIZE / 2)
+        if (i < SIZE / 2)
             animals[i] = new Dog();
         else
             animals[i] = new Cat();
     }
     
-    std::cout << "\nTesting all animals make sound:" << std::endl;
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    std::cout << BOLD_GREEN <<  "Testing all animals:" <<RESET<< std::endl;
+    for (int i = 0; i < SIZE; i++)
     {
         std::cout << "Animal " << i << " (" << animals[i]->getType() << "): ";
         animals[i]->makeSound();
     }
     
-    std::cout << "\nDeleting all animals as Animal pointers:" << std::endl;
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    for (int i = 0; i < SIZE; i++)
     {
         delete animals[i];
     }
     
-    std::cout << "\n=== Testing Wrong Animals ===" << std::endl;
-    const WrongAnimal* wrongMeta = new WrongAnimal();
+    std::cout << BOLD_GREEN <<"Testing Wrong Animals:" <<RESET<< std::endl;
+
+    const WrongAnimal* wrongAnm = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
     
     std::cout << "wrongCat type: " << wrongCat->getType() << std::endl;
-    std::cout << "wrongMeta type: " << wrongMeta->getType() << std::endl;
+    std::cout << "wrongAnm type: " << wrongAnm->getType() << std::endl;
     
     std::cout << "Wrong sounds:" << std::endl;
     wrongCat->makeSound();
-    wrongMeta->makeSound();
+    wrongAnm->makeSound();
     
-    delete wrongMeta;
+    delete wrongAnm;
     delete wrongCat;
+    delete Anm;
+    delete j;
+    delete i;
     
     return 0;
 }

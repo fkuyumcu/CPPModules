@@ -14,19 +14,19 @@
 
 Animal::Animal()
 {
-    std::cout << "Animal Constructor Called" << std::endl;
+    std::cout << BOLD_BLUE << "Animal Constructor Called" << RESET <<std::endl;
     this->type = "unknown";
 }
 
 Animal::Animal(const Animal &a)
 {
-    std::cout << "Animal Copy Constructor Called" << std::endl;
+    std::cout << BOLD_BLUE << "Animal Copy Constructor Called" << RESET << std::endl;
     this->type = a.type;
 }
 
 Animal& Animal::operator=(const Animal &a)
 {
-    std::cout << "Animal Operator Overload Called" << std::endl;
+    std::cout << BOLD_BLUE << "Animal Operator Overload Called" << RESET << std::endl;
     if (this != &a)
         this->type = a.type;
     return *this;
@@ -34,7 +34,7 @@ Animal& Animal::operator=(const Animal &a)
 
 Animal::~Animal()
 {
-    std::cout << "Animal Destructor Called" << std::endl;
+    std::cout << BOLD_RED << "Animal Destructor Called" << RESET << std::endl;
 }
 
 void Animal::makeSound() const

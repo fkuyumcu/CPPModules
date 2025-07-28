@@ -42,10 +42,6 @@ int main(void)
     Dog dog2;
     dog2 = dog1;
     
-    std::cout << " Deleting objects " << std::endl;
-    delete animal;
-    delete j;
-    delete i;
     
     std::cout << "Testing Wrong Animals" << std::endl;
     const WrongAnimal* wrongMeta = new WrongAnimal();
@@ -55,12 +51,15 @@ int main(void)
     std::cout << "wrongMeta type: " << wrongMeta->getType() << std::endl;
     
     std::cout << "wrong sounds:" << std::endl;
-
+    
     wrongCat->makeSound();
     wrongMeta->makeSound();
     
     delete wrongMeta;
     delete wrongCat;
+    delete animal;
+    delete j;
+    delete i;
     
     return 0;
 }

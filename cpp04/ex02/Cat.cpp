@@ -14,21 +14,21 @@
 
 Cat::Cat()
 {
-    std::cout << "Cat Constructor Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Cat Constructor Called" <<RESET<< std::endl;
     this->type = "Cat";
     this->brain = new Brain();
 }
 
 Cat::Cat(const Cat &a) : Animal(a)
 {
-    std::cout << "Cat Copy Constructor Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Cat Copy Constructor Called" <<RESET<< std::endl;
     this->type = a.type;
     this->brain = new Brain(*a.brain);
 }
 
 Cat& Cat::operator=(const Cat &a)
 {
-    std::cout << "Cat Operator Overload Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Cat Operator Overload Called" <<RESET<< std::endl;
     if (this != &a)
     {
         this->type = a.type;
@@ -40,7 +40,7 @@ Cat& Cat::operator=(const Cat &a)
 
 Cat::~Cat()
 {
-    std::cout << "Cat Destructor Called" << std::endl;
+    std::cout <<BOLD_RED<< "Cat Destructor Called" <<RESET<< std::endl;
     delete this->brain;
 }
 

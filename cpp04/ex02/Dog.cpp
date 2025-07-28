@@ -14,21 +14,21 @@
 
 Dog::Dog()
 {
-    std::cout << "Dog Constructor Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Dog Constructor Called" <<RESET<< std::endl;
     this->type = "Dog";
     this->brain = new Brain();
 }
 
 Dog::Dog(const Dog &a) : Animal(a)
 {
-    std::cout << "Dog Copy Constructor Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Dog Copy Constructor Called" << RESET << std::endl;
     this->type = a.type;
     this->brain = new Brain(*a.brain);
 }
 
 Dog& Dog::operator=(const Dog &a)
 {
-    std::cout << "Dog Operator Overload Called" << std::endl;
+    std::cout <<BOLD_BLUE<< "Dog Operator Overload Called" <<RESET<< std::endl;
     if (this != &a)
     {
         this->type = a.type;
@@ -40,7 +40,7 @@ Dog& Dog::operator=(const Dog &a)
 
 Dog::~Dog()
 {
-    std::cout << "Dog Destructor Called" << std::endl;
+    std::cout << BOLD_RED<< "Dog Destructor Called" <<RESET<< std::endl;
     delete this->brain;
 }
 
