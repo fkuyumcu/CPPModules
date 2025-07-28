@@ -19,19 +19,19 @@
 int main(void)
 {
     std::cout << "Creating objects" << std::endl;
-    const Animal* meta = new Animal();
+    const Animal* animal = new Animal();
     const Animal* j = new Dog();
     const Animal* i = new Cat();
     
     std::cout << " Testing getType() " << std::endl;
     std::cout << "j type: " << j->getType() << std::endl;
     std::cout << "i type: " << i->getType() << std::endl;
-    std::cout << "meta type: " << meta->getType() << std::endl;
+    std::cout << "animal type: " << animal->getType() << std::endl;
     
     std::cout << " Testing makeSound() " << std::endl;
     i->makeSound();
     j->makeSound();
-    meta->makeSound();
+    animal->makeSound();
     
     std::cout << " Testing copy constructor " << std::endl;
     Cat cat1;
@@ -43,18 +43,19 @@ int main(void)
     dog2 = dog1;
     
     std::cout << " Deleting objects " << std::endl;
-    delete meta;
+    delete animal;
     delete j;
     delete i;
     
-    std::cout << "\n=== Testing Wrong Animals ===" << std::endl;
+    std::cout << "Testing Wrong Animals" << std::endl;
     const WrongAnimal* wrongMeta = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
     
     std::cout << "wrongCat type: " << wrongCat->getType() << std::endl;
     std::cout << "wrongMeta type: " << wrongMeta->getType() << std::endl;
     
-    std::cout << "Wrong sounds:" << std::endl;
+    std::cout << "wrong sounds:" << std::endl;
+
     wrongCat->makeSound();
     wrongMeta->makeSound();
     

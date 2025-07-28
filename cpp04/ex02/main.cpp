@@ -19,23 +19,25 @@
 
 int main(void)
 {
-    std::cout << "Basic Tests" << std::endl;
     //const Animal* meta = new Animal();
+    //std::cout << "meta type: " << meta->getType() << std::endl;
+    //meta->makeSound();
+    //delete meta;
+
+    
+    std::cout << "Basic Tests" << std::endl;
     const Animal* j = new Dog();
     const Animal* i = new Cat();
     
     std::cout << "Testing getType()" << std::endl;
     std::cout << "j type: " << j->getType() << std::endl;
     std::cout << "i type: " << i->getType() << std::endl;
-    //std::cout << "meta type: " << meta->getType() << std::endl;
     
     std::cout << "Testing makeSound()" << std::endl;
     i->makeSound();
     j->makeSound();
-    //meta->makeSound();
     
     std::cout << "Deleting basic objects" << std::endl;
-    //delete meta;
     delete j;
     delete i;
     
