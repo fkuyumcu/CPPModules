@@ -8,6 +8,7 @@
 class Bureaucrat
 {
     public:
+        //Orthodox Canon.
         Bureaucrat();
         Bureaucrat(const std::string name, int grade);
         Bureaucrat(const Bureaucrat &br);

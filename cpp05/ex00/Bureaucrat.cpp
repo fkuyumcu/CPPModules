@@ -1,7 +1,11 @@
 #include "Bureaucrat.hpp"
+ 
+ //Used to initialize attributes before the constructor body executes
+ //This is mandatory for the name attribute because it is defined as a constant
 
 Bureaucrat::Bureaucrat() : name("def"), grade(150)
 {
+
 }
 
 Bureaucrat::Bureaucrat(const std::string n, int g) : name(n), grade(g)

@@ -37,17 +37,14 @@ class AForm
                 virtual const char* what() const throw();
         };
 
-        // Getters
         std::string getName() const;
         bool getSigned() const;
         int getGradeToSign() const;
         int getGradeToExecute() const;
 
-        // Member functions
         void beSigned(const Bureaucrat &b);
         void execute(Bureaucrat const & executor) const;
         
-        // Pure virtual function - makes this class abstract
         virtual void executeAction() const = 0;
 };
 

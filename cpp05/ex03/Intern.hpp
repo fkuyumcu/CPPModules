@@ -15,7 +15,6 @@ class Intern
         AForm* makeForm(const std::string &formName, const std::string &target);
 
     private:
-        // Helper functions for creating specific forms
         AForm* createShrubberyForm(const std::string &target);
         AForm* createRobotomyForm(const std::string &target);
         AForm* createPresidentialForm(const std::string &target);

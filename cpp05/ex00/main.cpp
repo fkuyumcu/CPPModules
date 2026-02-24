@@ -1,132 +1,70 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
+static void printSection(const std::string &title)
+{
+    std::cout << "\n=== " << title << " ===" << std::endl;
+}
+
 int main()
 {
-    std::cout << "=== Test 1: Valid Bureaucrat Creation ===" << std::endl;
+    printSection("Valid bureaucrat and grade changes");
     try {
-        Bureaucrat bob("Bob", 75);
-        std::cout << bob << std::endl;
+        Bureaucrat bob("Bob", 2);
+        std::cout << "Start: " << bob << std::endl;
+        bob.incGrade();
+        std::cout << "After incGrade(): " << bob << std::endl;
+        bob.decGrade();
+        std::cout << "After decGrade(): " << bob << std::endl;
     }
     catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Test 2: Default Constructor ===" << std::endl;
+    printSection("Constructor boundary checks");
     try {
-        Bureaucrat def;
-        std::cout << def << std::endl;
+        Bureaucrat tooHigh("TooHigh", 0);
+        std::cout << tooHigh << std::endl;
     }
     catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Creating grade 0 failed: " << e.what() << std::endl;
+    }
+    try {
+        Bureaucrat tooLow("TooLow", 151);
+        std::cout << tooLow << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << "Creating grade 151 failed: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Test 3: Highest Grade (1) ===" << std::endl;
+    printSection("Operation boundary checks");
     try {
         Bureaucrat top("Top", 1);
-        std::cout << top << std::endl;
+        std::cout << "Before incGrade(): " << top << std::endl;
+        top.incGrade();
     }
     catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "incGrade at grade 1 failed: " << e.what() << std::endl;
     }
-
-    std::cout << "\n=== Test 4: Lowest Grade (150) ===" << std::endl;
     try {
         Bureaucrat bottom("Bottom", 150);
-        std::cout << bottom << std::endl;
+        std::cout << "Before decGrade(): " << bottom << std::endl;
+        bottom.decGrade();
     }
     catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "decGrade at grade 150 failed: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Test 5: Grade Too High (0) ===" << std::endl;
-    try {
-        Bureaucrat invalid("Invalid", 0);
-        std::cout << invalid << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 6: Grade Too Low (151) ===" << std::endl;
-    try {
-        Bureaucrat invalid("Invalid", 151);
-        std::cout << invalid << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 7: Increment Grade ===" << std::endl;
-    try {
-        Bureaucrat alice("Alice", 3);
-        std::cout << "Before: " << alice << std::endl;
-        alice.incGrade();
-        std::cout << "After increment: " << alice << std::endl;
-        alice.incGrade();
-        std::cout << "After increment: " << alice << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 8: Increment Grade at Maximum (should throw) ===" << std::endl;
-    try {
-        Bureaucrat topGuy("TopGuy", 1);
-        std::cout << "Before: " << topGuy << std::endl;
-        topGuy.incGrade(); // This should throw
-        std::cout << "After increment: " << topGuy << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 9: Decrement Grade ===" << std::endl;
-    try {
-        Bureaucrat charlie("Charlie", 148);
-        std::cout << "Before: " << charlie << std::endl;
-        charlie.decGrade();
-        std::cout << "After decrement: " << charlie << std::endl;
-        charlie.decGrade();
-        std::cout << "After decrement: " << charlie << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 10: Decrement Grade at Minimum (should throw) ===" << std::endl;
-    try {
-        Bureaucrat lowGuy("LowGuy", 150);
-        std::cout << "Before: " << lowGuy << std::endl;
-        lowGuy.decGrade(); // This should throw
-        std::cout << "After decrement: " << lowGuy << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 11: Copy Constructor ===" << std::endl;
+    printSection("Copy and assignment");
     try {
         Bureaucrat original("Original", 42);
         Bureaucrat copy(original);
+        Bureaucrat assigned("Assigned", 100);
+        assigned = original;
+
         std::cout << "Original: " << original << std::endl;
         std::cout << "Copy: " << copy << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n=== Test 12: Assignment Operator ===" << std::endl;
-    try {
-        Bureaucrat first("First", 10);
-        Bureaucrat second("Second", 100);
-        std::cout << "Before assignment:" << std::endl;
-        std::cout << "First: " << first << std::endl;
-        std::cout << "Second: " << second << std::endl;
-        second = first;
-        std::cout << "After assignment (second = first):" << std::endl;
-        std::cout << "First: " << first << std::endl;
-        std::cout << "Second: " << second << " (name stays 'Second', grade becomes 10)" << std::endl;
+        std::cout << "Assigned: " << assigned << std::endl;
     }
     catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;

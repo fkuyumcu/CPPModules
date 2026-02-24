@@ -26,9 +26,6 @@ class Bureaucrat
                 virtual const char* what() const throw();
         };
 
-
-
-      //getters and setters
         std::string getName() const;
         int     getGrade() const;
         void    incGrade();
