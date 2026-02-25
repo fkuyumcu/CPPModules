@@ -24,6 +24,7 @@ Fixed::Fixed(const Fixed &f)
     std::cout << "Copy constructor called" << std::endl;
     this->FixedValue = f.getRawBits();
 }
+// 
 
 Fixed& Fixed::operator=(const Fixed &f)
 {

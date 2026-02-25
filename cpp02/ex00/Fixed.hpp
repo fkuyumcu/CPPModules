@@ -31,7 +31,7 @@ class Fixed
     	int					FixedValue;
     	static const int	NumOfFractional = 8;
 
-
+//234,5 --> 13323432
 };
 
 #endif
