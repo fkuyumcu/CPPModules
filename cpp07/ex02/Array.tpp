@@ -8,12 +8,12 @@ Array<T>::Array() : elements(NULL), arraySize(0)
 {
 
 }
-//creating an empty list in constructor
 
 template<typename T>
 Array<T>::Array(unsigned int n) : elements(NULL), arraySize(n)
 {
-    if (n > 0) {
+    if (n > 0)
+    {
         elements = new T[n]();
     }
 }
@@ -34,14 +34,14 @@ Array<T>& Array<T>::operator=(const Array& other) {
         delete[] elements;
         
         arraySize = other.arraySize;
-        if (arraySize > 0) {
+        if (arraySize > 0)
+        {
             elements = new T[arraySize];
-            for (unsigned int i = 0; i < arraySize; ++i) {
+            for (unsigned int i = 0; i < arraySize; ++i)
                 elements[i] = other.elements[i];
-            }
-        } else {
+        } 
+        else
             elements = NULL;
-        }
     }
     return *this;
 }
@@ -68,7 +68,8 @@ const T& Array<T>::operator[](unsigned int index) const {
 }
 
 template<typename T>
-unsigned int Array<T>::size() const {
+unsigned int Array<T>::size() const 
+{
     return arraySize;
 }
 

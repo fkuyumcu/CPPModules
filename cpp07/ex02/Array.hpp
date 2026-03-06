@@ -18,11 +18,9 @@ class Array
         Array& operator=(const Array& other);
         ~Array();
     
-        //overloading [] operator for index access 
         T& operator[](unsigned int index);
         const T& operator[](unsigned int index) const;
     
-        
         unsigned int size() const;
 };
 
