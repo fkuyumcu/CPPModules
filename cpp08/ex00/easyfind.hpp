@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <stdexcept>
 
-//yalnızca .begin() ve .end() metodlarını içeren containerlarda çalışır
-template <typename T>//easyfind type'a göre bir iterator döndürüyor. 
+
+template <typename T>
 typename T::iterator easyfind(T &container, int value)
 {
     typename T::iterator it = std::find(container.begin(), container.end(), value);

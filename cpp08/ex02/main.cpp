@@ -8,9 +8,9 @@ int main()
 
     mstack.push(5);
     mstack.push(17);
-    std::cout << mstack.top() << std::endl;  // 17
+    std::cout << mstack.top() << std::endl;  
     mstack.pop();
-    std::cout << mstack.size() << std::endl; // 1
+    std::cout << mstack.size() << std::endl; 
 
     mstack.push(3);
     mstack.push(5);
@@ -28,7 +28,6 @@ int main()
         ++it;
     }
 
-    // subject: aynı kodu list ile çalıştır, çıktı aynı olmalı
     std::list<int> lst;
     lst.push_back(5);
     lst.push_back(3);
@@ -47,7 +46,7 @@ int main()
         ++it2;
     }
 
-    // stack'e cast edilebilmeli
+    // should be castable to stack
     std::stack<int> s(mstack);
 
     return 0;
