@@ -46,7 +46,7 @@ int main()
         ++it2;
     }
 
-    // should be castable to stack
+    //should be usable as stack
     std::stack<int> s(mstack);
 
     return 0;
