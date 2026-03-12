@@ -15,21 +15,21 @@ int main()
     try
     {
         std::vector<int>::iterator it = easyfind(vec, 42);
-        std::cout << "vector'da bulundu: " << *it << std::endl;
+        std::cout << "found in vector: " << *it << std::endl;
     }
     catch (std::exception &e)
     {
-        std::cout << "Hata: " << e.what() << std::endl;
+        std::cout << "Err: " << e.what() << std::endl;
     }
 
     try
     {
         std::vector<int>::iterator it = easyfind(vec, 99);
-        std::cout << "vector'da bulundu: " << *it << std::endl;
+        std::cout << "found in vector:" << *it << std::endl;
     }
     catch (std::exception &e)
     {
-        std::cout << "Hata: " << e.what() << std::endl;
+        std::cout << "Err:: " << e.what() << std::endl;
     }
 
     std::list<int> lst;
@@ -39,9 +39,9 @@ int main()
 
     try {
         std::list<int>::iterator it = easyfind(lst, 20);
-        std::cout << "list'te bulundu: " << *it << std::endl;
+        std::cout << "found in list " << *it << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Hata: " << e.what() << std::endl;
+        std::cout << "Err: " << e.what() << std::endl;
     }
 
     return 0;

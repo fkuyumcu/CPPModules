@@ -20,10 +20,11 @@ class Span
         int  shortestSpan() const;
         int  longestSpan() const;
 
-        template <typename Iterator>
-        void addNumbers(Iterator first, Iterator last)
+        template <typename T>
+        void addNumbers(T first, T last)
         {
-            while (first != last) {
+            while (first != last)
+            {
                 addNumber(*first);
                 first++;
             }
