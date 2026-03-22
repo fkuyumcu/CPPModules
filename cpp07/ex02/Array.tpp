@@ -22,7 +22,8 @@ template<typename T>
 Array<T>::Array(const Array& other) : elements(NULL), arraySize(other.arraySize) {
     if (arraySize > 0) {
         elements = new T[arraySize];
-        for (unsigned int i = 0; i < arraySize; ++i) {
+        for (unsigned int i = 0; i < arraySize; ++i)
+        {
             elements[i] = other.elements[i];
         }
     }

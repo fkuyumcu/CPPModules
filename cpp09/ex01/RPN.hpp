@@ -3,6 +3,7 @@
 
 
 # include <stack>
+# include <list>
 # include <string>
 # include <iostream>
 # include <fstream>
@@ -21,7 +22,7 @@ class RPN
         int evaluate(const std::string &expression);
 
     private:
-        std::stack<int> stack;
+        std::stack<int, std::list<int> > stack;
 
         bool isOperator(const std::string &token);
         int  apply(int a, int b, char op);

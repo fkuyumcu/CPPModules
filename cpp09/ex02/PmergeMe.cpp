@@ -28,9 +28,20 @@ PmergeMe::~PmergeMe()
 
 int PmergeMe::jacobsthal(int n) const
 {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+
+    int prev2 = 0; // J(0)
+    int prev1 = 1; // J(1)
+    for (int i = 2; i <= n; ++i)
+    {
+        int curr = prev1 + 2 * prev2;
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return prev1;
 }
 
 
@@ -56,7 +67,6 @@ void PmergeMe::parseInput(int argc, char **argv)
             throw std::runtime_error("Error");
 
         vec.push_back(val);
-        deq.push_back(val);
     }
 }
 
@@ -105,6 +115,7 @@ void PmergeMe::sortVector(std::vector<int> &v)
     for (int i = 0; i < pairs; i++)
         bigs.push_back(paired[i].first);
 
+    //recursively sort bigs
     sortVector(bigs);
 
     std::vector<int> pend;
@@ -123,17 +134,17 @@ void PmergeMe::sortVector(std::vector<int> &v)
     }
 
     std::vector<int> chain(bigs);
-    chain.insert(chain.begin(), pend[0]);
 
+    chain.insert(chain.begin(), pend[0]);
+//insert the smallest pend
     std::vector<bool> inserted(pend.size(), false);
     inserted[0] = true;
 
     int k = 1;
+    int jPrev = jacobsthal(k);     // J(1)
+    int jCurr = jacobsthal(k + 1); // J(2)
     while (true)
     {
-        int jCurr = jacobsthal(k + 1);
-        int jPrev = jacobsthal(k);
-
         if (jPrev >= (int)pend.size())
             break;
 
@@ -158,6 +169,9 @@ void PmergeMe::sortVector(std::vector<int> &v)
             insertVector(chain, pend[i], limit);
             inserted[i] = true;
         }
+        int jNext = jCurr + 2 * jPrev;
+        jPrev = jCurr;
+        jCurr = jNext;
         k++;
     }
 
@@ -167,7 +181,6 @@ void PmergeMe::sortVector(std::vector<int> &v)
     v = chain;
 }
 
-// ── Binary search insert: val'ı chain[0..limit) aralığına yerleştirir ───────
 
 void PmergeMe::insertDeque(std::deque<int> &chain, int val, int limit)
 {
@@ -185,7 +198,6 @@ void PmergeMe::insertDeque(std::deque<int> &chain, int val, int limit)
     chain.insert(chain.begin() + lo, val);
 }
 
-// ── Ford-Johnson (merge-insert) sort — std::deque ──────────────────────────
 
 void PmergeMe::sortDeque(std::deque<int> &d)
 {
@@ -235,11 +247,10 @@ void PmergeMe::sortDeque(std::deque<int> &d)
     inserted[0] = true;
 
     int k = 1;
+    int jPrev = jacobsthal(k);     // J(1)
+    int jCurr = jacobsthal(k + 1); // J(2)
     while (true)
     {
-        int jCurr = jacobsthal(k + 1);
-        int jPrev = jacobsthal(k);
-
         if (jPrev >= (int)pend.size())
             break;
 
@@ -264,6 +275,9 @@ void PmergeMe::sortDeque(std::deque<int> &d)
             insertDeque(chain, pend[i], limit);
             inserted[i] = true;
         }
+        int jNext = jCurr + 2 * jPrev;
+        jPrev = jCurr;
+        jCurr = jNext;
         k++;
     }
 
@@ -274,23 +288,25 @@ void PmergeMe::sortDeque(std::deque<int> &d)
 }
 
 
-// ── Giriş noktası: parse → sort → çıktı ────────────────────────────────────
 
 void PmergeMe::run(int argc, char **argv)
 {
     parseInput(argc, argv);
 
-    std::cout << "Before: ";
-    for (size_t i = 0; i < vec.size(); i++)
-        std::cout << vec[i] << (i + 1 < vec.size() ? " " : "\n");
+    std::vector<int> original(vec);
 
     std::clock_t vStart = std::clock();
     sortVector(vec);
     std::clock_t vEnd = std::clock();
 
     std::clock_t dStart = std::clock();
+    deq.assign(original.begin(), original.end());
     sortDeque(deq);
     std::clock_t dEnd = std::clock();
+
+    std::cout << "Before: ";
+    for (size_t i = 0; i < original.size(); i++)
+        std::cout << original[i] << (i + 1 < original.size() ? " " : "\n");
 
     std::cout << "After:  ";
     for (size_t i = 0; i < vec.size(); i++)
