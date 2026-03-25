@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-// ── Canonical form ───────────────────────────────────────────────────────────
 
 PmergeMe::PmergeMe()
 {
@@ -24,29 +23,7 @@ PmergeMe::~PmergeMe()
 }
 
 
-// ── Jacobsthal sequence: J(0)=0, J(1)=1, J(n)=J(n-1)+2*J(n-2) ─────────────
-
-int PmergeMe::jacobsthal(int n) const
-{
-    if (n == 0)
-        return 0;
-    if (n == 1)
-        return 1;
-
-    int prev2 = 0; // J(0)
-    int prev1 = 1; // J(1)
-    for (int i = 2; i <= n; ++i)
-    {
-        int curr = prev1 + 2 * prev2;
-        prev2 = prev1;
-        prev1 = curr;
-    }
-    return prev1;
-}
-
-
-// ── Parse & validate: pozitif tam sayıları vec ve deq'e doldurur ────────────
-
+//pushes positive integers into vector and deque containers.
 void PmergeMe::parseInput(int argc, char **argv)
 {
     for (int i = 1; i < argc; i++)
@@ -71,12 +48,12 @@ void PmergeMe::parseInput(int argc, char **argv)
 }
 
 
-// ── Binary search insert: val'ı chain[0..limit) aralığına yerleştirir ───────
-
-void PmergeMe::insertVector(std::vector<int> &chain, int val, int limit)
+//inserts val into chain using binary search
+//chain[limit] is max, cause always pend[i] < bigs[i] 
+void PmergeMe::insertVector(std::vector<int> &chain, int val, int lim)
 {
     int lo = 0;
-    int hi = limit; 
+    int hi = lim; 
 
     while (lo < hi)
     {
@@ -89,8 +66,7 @@ void PmergeMe::insertVector(std::vector<int> &chain, int val, int limit)
     chain.insert(chain.begin() + lo, val);
 }
 
-// ── Ford-Johnson (merge-insert) sort — std::vector ─────────────────────────
-
+// sorting alg. for vector container
 void PmergeMe::sortVector(std::vector<int> &v)
 {
     int n = v.size();
@@ -102,24 +78,26 @@ void PmergeMe::sortVector(std::vector<int> &v)
     bool hasStray = (n % 2 == 1);
     int stray = hasStray ? v[n - 1] : -1;
 
+    //pair and sort the bigs recursively
+
     std::vector<std::pair<int,int> > paired;
     for (int i = 0; i < pairs; i++)
     {
         int a = v[2 * i];
         int b = v[2 * i + 1];
-        if (a < b) std::swap(a, b);
+        if (a < b) 
+            std::swap(a, b);
         paired.push_back(std::make_pair(a, b));
     }
 
     std::vector<int> bigs;
     for (int i = 0; i < pairs; i++)
         bigs.push_back(paired[i].first);
-
-    //recursively sort bigs
     sortVector(bigs);
 
     std::vector<int> pend;
     std::vector<bool> used(pairs, false);
+    
     for (int i = 0; i < pairs; i++)
     {
         for (int j = 0; j < pairs; j++)
@@ -132,17 +110,18 @@ void PmergeMe::sortVector(std::vector<int> &v)
             }
         }
     }
+    if (hasStray)
+        pend.push_back(stray);
 
     std::vector<int> chain(bigs);
 
     chain.insert(chain.begin(), pend[0]);
-//insert the smallest pend
     std::vector<bool> inserted(pend.size(), false);
     inserted[0] = true;
 
-    int k = 1;
-    int jPrev = jacobsthal(k);     // J(1)
-    int jCurr = jacobsthal(k + 1); // J(2)
+    //adjusting the jacobsthal range
+    int jPrev = 1;
+    int jCurr = 1;
     while (true)
     {
         if (jPrev >= (int)pend.size())
@@ -156,27 +135,33 @@ void PmergeMe::sortVector(std::vector<int> &v)
             if (inserted[i])
                 continue;
 
-            int limit = 0;
-            for (int j = 0; j < (int)chain.size(); j++)
+            int limit;
+            if (i < (int)bigs.size())
             {
-                if (chain[j] == bigs[i])
+                limit = 0;
+                for (int j = 0; j < (int)chain.size(); j++)
                 {
-                    limit = j;
-                    break;
+                    if (chain[j] == bigs[i])
+                    {
+                        limit = j;
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                limit = (int)chain.size();
             }
 
             insertVector(chain, pend[i], limit);
             inserted[i] = true;
         }
+        //returns jacobsthal series for given input n
+        //(1,1) (1,3) (3,5) (5,11)
         int jNext = jCurr + 2 * jPrev;
         jPrev = jCurr;
         jCurr = jNext;
-        k++;
     }
-
-    if (hasStray)
-        insertVector(chain, stray, chain.size());
 
     v = chain;
 }
@@ -239,6 +224,8 @@ void PmergeMe::sortDeque(std::deque<int> &d)
             }
         }
     }
+    if (hasStray)
+        pend.push_back(stray);
 
     std::deque<int> chain(bigs);
     chain.insert(chain.begin(), pend[0]);
@@ -246,9 +233,9 @@ void PmergeMe::sortDeque(std::deque<int> &d)
     std::deque<bool> inserted(pend.size(), false);
     inserted[0] = true;
 
-    int k = 1;
-    int jPrev = jacobsthal(k);     // J(1)
-    int jCurr = jacobsthal(k + 1); // J(2)
+    //jacobsthal series starts with [1,1]
+    int jPrev = 1;
+    int jCurr = 1;
     while (true)
     {
         if (jPrev >= (int)pend.size())
@@ -262,14 +249,22 @@ void PmergeMe::sortDeque(std::deque<int> &d)
             if (inserted[i])
                 continue;
 
-            int limit = 0;
-            for (int j = 0; j < (int)chain.size(); j++)
+            int limit;
+            if (i < (int)bigs.size())
             {
-                if (chain[j] == bigs[i])
+                limit = 0;
+                for (int j = 0; j < (int)chain.size(); j++)
                 {
-                    limit = j;
-                    break;
+                    if (chain[j] == bigs[i])
+                    {
+                        limit = j;
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                limit = (int)chain.size();
             }
 
             insertDeque(chain, pend[i], limit);
@@ -278,11 +273,7 @@ void PmergeMe::sortDeque(std::deque<int> &d)
         int jNext = jCurr + 2 * jPrev;
         jPrev = jCurr;
         jCurr = jNext;
-        k++;
     }
-
-    if (hasStray)
-        insertDeque(chain, stray, chain.size());
 
     d = chain;
 }

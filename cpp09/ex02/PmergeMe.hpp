@@ -31,8 +31,6 @@ class PmergeMe
 
         void    sortDeque(std::deque<int> &d);
         void    insertDeque(std::deque<int> &chain, int val, int limit);
-
-        int     jacobsthal(int n) const;
 };
 
 #endif
