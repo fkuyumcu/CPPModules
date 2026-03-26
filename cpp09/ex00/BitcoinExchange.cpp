@@ -64,7 +64,6 @@ bool BitcoinExchange::isValidValue(const std::string &value, float &out) const
     if (value.empty())
         return false;
 
-    // strtof ile parse et, endptr kalan kısmı gösterir
     char *endptr;
     out = strtof(value.c_str(), &endptr);
 
