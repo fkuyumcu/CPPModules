@@ -84,7 +84,6 @@ bool BitcoinExchange::isValidValue(const std::string &value, float &out) const
     return true;
 }
 
-// en yakın küçük tarihin fiyatını döndürür
 float BitcoinExchange::getRate(const std::string &date) const
 {
     std::map<std::string, float>::const_iterator it = db.lower_bound(date);
@@ -137,7 +136,6 @@ void BitcoinExchange::loadDb(const std::string &filename)
 
 
 
-//edit this method
 void BitcoinExchange::processInput(const std::string &filename)
 {
     std::ifstream file(filename.c_str());
@@ -178,7 +176,7 @@ void BitcoinExchange::processInput(const std::string &filename)
 
         float amount;
         if (!isValidValue(value, amount))
-            continue; // hata mesajı zaten isValidValue içinde yazdırıldı
+            continue;
 
         float rate = getRate(date);
         if (rate < 0)
